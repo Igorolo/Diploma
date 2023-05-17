@@ -1,0 +1,412 @@
+Account Post V1
+
+{
+    "fullName": "dsfds Doe",
+    "phoneNumber": "123456789",
+    "email": "johndoe@example.com",
+    "login": "johndoe",
+    "password": "password123",
+    "isAdmin": "false",
+    "city": {
+        "id": 1
+    }
+}
+
+
+
+Account Get V1
+{
+    "accountId": 6,
+    "fullName": "dsfds Doe",
+    "phoneNumber": "123456789",
+    "email": "johndoe@example.com",
+    "login": "johndoe",
+    "password": "password123",
+    "isAdmin": false,
+    "city": {
+        "cityId": 3,
+        "country": "Chua",
+        "city": "fgdd"
+    },
+    "newsList": [],
+    "messages": [],
+    "repairs": [],
+    "repairAccounts": [],
+    "feedbacks": [],
+    "testAccounts": [],
+    "car": {
+        "carId": 7,
+        "mileage": 50000,
+        "carBrand": "Toyota",
+        "manufacturerCountry": "Japan",
+        "engine": "2.0L",
+        "transmission": "Automatic",
+        "brakeSystem": "ABS",
+        "steeringWheel": "Left",
+        "accountId": 6
+    },
+    "admin": false
+}
+
+
+Account Get V2 (Login)
+http://localhost:8080/accounts/login/johndoe
+
+{
+    "accountId": 6,
+    "fullName": "dsfds Doe",
+    "phoneNumber": "123456789",
+    "email": "johndoe@example.com",
+    "login": "johndoe",
+    "password": "password123",
+    "isAdmin": false,
+    "city": {
+        "cityId": 3,
+        "country": "Chua",
+        "city": "fgdd"
+    },
+    "newsList": [],
+    "messages": [],
+    "repairs": [],
+    "repairAccounts": [],
+    "feedbacks": [],
+    "testAccounts": [],
+    "car": {
+        "carId": 7,
+        "mileage": 50000,
+        "carBrand": "Toyota",
+        "manufacturerCountry": "Japan",
+        "engine": "2.0L",
+        "transmission": "Automatic",
+        "brakeSystem": "ABS",
+        "steeringWheel": "Left",
+        "accountId": 6
+    },
+    "admin": false
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cities Post V1
+{
+    "city": "Liev",
+    "country": "Ukraine"
+}
+
+Cities Get V1
+
+{
+    "cityId": 3,
+    "country": "Chua",
+    "city": "fgdd"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Car Post V1
+
+{
+    "mileage": 50000,
+    "carBrand": "Toyota",
+    "manufacturerCountry": "Japan",
+    "engine": "2.0L",
+    "transmission": "Automatic",
+    "brakeSystem": "ABS",
+    "steeringWheel": "Left",
+    "accountId": 1
+}
+
+
+Car Get V1
+
+{
+    "carId": 7,
+    "mileage": 50000,
+    "carBrand": "Toyota",
+    "manufacturerCountry": "Japan",
+    "engine": "2.0L",
+    "transmission": "Automatic",
+    "brakeSystem": "ABS",
+    "steeringWheel": "Left",
+    "accountId": 6
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Repairs Post V1
+{
+    "name": "ABC Repair Shop",
+    "address": "123 Main Street",
+    "workingSchedule": "9:00 AM - 6:00 PM",
+    "rating": 4.5,
+    "cityId": 3
+}
+
+
+
+Repairs Get V1
+{
+    "repairId": 8,
+    "name": "ABC Repair Shop",
+    "address": "123 Main Street",
+    "workingSchedule": "9:00 AM - 6:00 PM",
+    "rating": 4.5,
+    "cityId": 3,
+    "accounts": [],
+    "feedbacks": []
+}
+
+
+
+
+
+
+
+
+
+Feedbacks Post V1
+{
+    "mark": 5,
+    "message": "Great service!",
+    "accountId": 6,
+    "repairId": 8
+}
+
+Feedbacks Get V1
+{
+    "feedbackId": 9,
+    "mark": 5,
+    "date": "2023-05-17T12:14:56.443+0000",
+    "message": "Great service!",
+    "accountId": 6,
+    "repairId": 8
+}
+
+
+
+
+
+
+
+
+
+Messgaes post V1
+{
+"date": "2023-05-17T11:30:00",
+"message": "Hello, how are you?",
+"accountId": 6,
+"accountFullName": "dsfds Joe"
+}
+
+Messages Get V1
+
+{
+    "messageId": 10,
+    "date": "2023-05-17T11:30:00",
+    "message": "Hello, how are you?",
+    "accountId": 6,
+    "accountFullName": null
+}
+
+
+
+
+
+
+
+
+
+
+News post V1
+{
+"header": "Breaking News!",
+"text": "Important announcement",
+"date": "2023-05-17T12:00:00",
+"accountId": 6
+}
+
+News Get V1
+{
+    "newsId": 11,
+    "header": "Breaking News!",
+    "text": "Important announcement",
+    "date": "2023-05-17T12:00:00.000+0000",
+    "accountId": 6
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Repair-Account post V1 
+{ 
+    "repairId": 8,
+    "accountId": 6,
+    "date": "2023-05-17T13:00:00",
+    "repairName": "ABC Repair Shop"
+}
+
+Repair-Account Get V1
+{
+    "id": 12,
+    "repairId": 8,
+    "accountId": 6,
+    "date": "2023-05-17T13:00:00.000+0000",
+    "repairName": "ABC Repair Shop"
+}
+
+
+
+
+
+
+
+
+
+
+Tests Post V1 
+{
+    "question": "What is the capital of France?",
+    "answer": "Paris"
+}
+Tests Get V1 
+{
+    "id": 13,
+    "question": "What is the capital of France?",
+    "answer": "Paris",
+    "testAccounts": []
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+User mostly full Get
+{
+    "accountId": 6,
+    "fullName": "dsfds Doe",
+    "phoneNumber": "123456789",
+    "email": "johndoe@example.com",
+    "login": "johndoe",
+    "password": "password123",
+    "isAdmin": false,
+    "city": {
+        "cityId": 3,
+        "country": "Chua",
+        "city": "fgdd"
+    },
+    "newsList": [
+        {
+            "newsId": 11,
+            "header": "Breaking News!",
+            "text": "Important announcement",
+            "date": "2023-05-17T12:00:00.000+0000",
+            "accountId": 6
+        }
+    ],
+    "messages": [
+        {
+            "messageId": 10,
+            "date": "2023-05-17T11:30:00",
+            "message": "Hello, how are you?",
+            "accountId": 6,
+            "accountFullName": null
+        }
+    ],
+    "repairs": [],
+    "repairAccounts": [
+        {
+            "id": 12,
+            "repairId": 8,
+            "accountId": 6,
+            "date": "2023-05-17T13:00:00.000+0000",
+            "repairName": "ABC Repair Shop"
+        }
+    ],
+    "feedbacks": [
+        {
+            "feedbackId": 9,
+            "mark": 5,
+            "date": "2023-05-17T12:14:56.443+0000",
+            "message": "Great service!",
+            "accountId": 6,
+            "repairId": 8
+        }
+    ],
+    "testAccounts": [],
+    "car": {
+        "carId": 7,
+        "mileage": 50000,
+        "carBrand": "Toyota",
+        "manufacturerCountry": "Japan",
+        "engine": "2.0L",
+        "transmission": "Automatic",
+        "brakeSystem": "ABS",
+        "steeringWheel": "Left",
+        "accountId": 6
+    },
+    "admin": false
+}
+
+
+
+
+
+
+
+
+Tests-accounts post V1
+@PostMapping("/tests/{testId}/accounts/{accountId}/score")
