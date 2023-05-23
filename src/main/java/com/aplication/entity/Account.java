@@ -64,6 +64,7 @@ public class Account {
     private List<TestAccount> testAccounts = new ArrayList<>();
 
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_id", nullable = true)
     private Car car;
 
 

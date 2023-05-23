@@ -69,7 +69,11 @@ public class AccountResponseDTO {
         this.testAccounts = account.getTestAccounts().stream()
                 .map(TestAccountResponseDTO::new)
                 .collect(Collectors.toList());
-        this.car = new CarResponseDTO(account.getCar());
+        if (account.getCar() != null) {
+            this.car = new CarResponseDTO(account.getCar());
+        } else {
+            this.car = null; // Если поле car равно null, присвоить null в AccountResponseDTO
+        }
     }
     public Long getAccountId() {
         return accountId;
