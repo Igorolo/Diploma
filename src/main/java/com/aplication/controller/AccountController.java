@@ -40,6 +40,11 @@ public class AccountController {
         return new AccountResponseDTO(accountService.getAccountByLogin(login));
     }
 
+    @GetMapping("/accounts/login/{login}/password/{password}")
+    public AccountResponseDTO getByLoginAndPassword(@PathVariable String login, @PathVariable String password){
+        return new AccountResponseDTO(accountService.getAccountByLoginAndPassword(login, password));
+    }
+
     @DeleteMapping("/accounts/{id}")
     public void deleteAccountById(@PathVariable("id") Long id) {
         accountService.deleteAccount(id);

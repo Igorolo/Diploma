@@ -22,7 +22,7 @@ public class Message {
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
     private Account account;
 
-    @Transient
+    @Column(name = "accountFullName")
     private String accountFullName;
 
     public Message(LocalDateTime date, String message, Account account, String accountFullName) {

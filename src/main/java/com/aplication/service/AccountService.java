@@ -35,17 +35,27 @@ public class AccountService {
         return accountOptional.orElseThrow(() -> new AccountNotFoundException("Unable to find account with login " + login));
     }
 
+    public Account getAccountByLoginAndPassword(String login, String password){
+        Optional<Account> accountOptional = accountRepository.findByLoginAndPassword(login, password);
+        return accountOptional.orElseThrow(() -> new AccountNotFoundException("Incorrect login or password "));
+    }
+
     public void deleteAccount(Long accountId) {
         accountRepository.deleteById(accountId);
     }
 
-    public Long createAccountFromDTO(String fullName, String phoneNumber, String email, String login, String password, Boolean isAdmin, CityRequestDTO cityDTO) {
+    public Long createAccountFromDTO(String fullName, String phoneNumber, String email, String login, String password,
+                                     Boolean isAdmin, CityRequestDTO cityDTO) {
         // Преобразование объекта CityRequestDTO в City
         City city = convertCityDTOtoCity(cityDTO);
 
         // Вызов метода createAccount с преобразованными данными
         return createAccount(fullName, phoneNumber, email, login, password, isAdmin, city);
     }
+
+    /*public String getAccountFullName(Long id){
+         return accountRepository.findFullName(id);
+    }*/
 
     public City convertCityDTOtoCity(CityRequestDTO cityDTO) {
         City city = new City();

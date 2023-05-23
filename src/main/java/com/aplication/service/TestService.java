@@ -52,7 +52,8 @@ public class TestService {
         Test test = testOptional.orElseThrow(() -> new TestNotFoundException("Unable to find test with id " + testId));
 
         Optional<TestAccount> testAccountOptional = testAccountRepository.findById(new TestAccountKey(testId, accountId));
-        TestAccount testAccount = testAccountOptional.orElseThrow(() -> new TestAccountNotFoundException("Unable to find test account with id " + accountId));
+        TestAccount testAccount = testAccountOptional.orElseThrow(() ->
+                new TestAccountNotFoundException("Unable to find test account with id " + accountId));
 
         test.addTestAccount(testAccount);
         testRepository.save(test);

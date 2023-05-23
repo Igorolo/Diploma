@@ -1,5 +1,7 @@
 package com.aplication.entity;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,6 +33,7 @@ public class Account {
     private String password;
 
     @Column(name = "isAdmin")
+    @ColumnDefault("false")
     private Boolean isAdmin;
 
     @ManyToOne
@@ -64,7 +67,8 @@ public class Account {
     private Car car;
 
 
-    public Account(String fullName, String phoneNumber, String email, String login, String password, Boolean isAdmin, City city) {
+    public Account(String fullName, String phoneNumber, String email, String login,
+                   String password, Boolean isAdmin, City city) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
