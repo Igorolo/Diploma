@@ -30,7 +30,6 @@ public class AccountController {
                 accountRequestDTO.getEmail(),
                 accountRequestDTO.getLogin(),
                 accountRequestDTO.getPassword(),
-                accountRequestDTO.getIsAdmin(),
                 accountRequestDTO.getCity()
         );
     }

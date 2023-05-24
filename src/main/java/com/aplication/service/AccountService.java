@@ -6,6 +6,7 @@ import com.aplication.entity.City;
 import com.aplication.exceptions.AccountNotFoundException;
 import com.aplication.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,8 +20,16 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public Long createAccount(String fullName, String phoneNumber, String email, String login, String password, Boolean isAdmin, City city) {
-        Account account = new Account(fullName, phoneNumber, email, login, password, isAdmin, city);
+    public Long createAccount(String fullName, String phoneNumber, String email, String login, String password, City city) {
+        Optional<Account> existingAccountOptional = accountRepository.findByLogin(login);
+        if (existingAccountOptional.isPresent()) {
+            throw new IllegalArgumentException("Account with the given login already exists");
+        }
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(password);
+
+        Account account = new Account(fullName, phoneNumber, email, login, encodedPassword, city);
         Account createdAccount = accountRepository.save(account);
         return createdAccount.getAccountId();
     }
@@ -50,7 +59,7 @@ public class AccountService {
         City city = convertCityDTOtoCity(cityDTO);
 
         // Вызов метода createAccount с преобразованными данными
-        return createAccount(fullName, phoneNumber, email, login, password, isAdmin, city);
+        return createAccount(fullName, phoneNumber, email, login, password, city);
     }
 
     /*public String getAccountFullName(Long id){

@@ -1,6 +1,7 @@
 package com.aplication.controller.dto;
 
 import com.aplication.entity.Account;
+import com.aplication.entity.Role;
 
 import java.util.List;
 import java.util.Set;
@@ -14,8 +15,8 @@ public class AccountResponseDTO {
     private String email;
     private String login;
     private String password;
-    private Boolean isAdmin;
     private CityResponseDTO city;
+    private Set<Role> roles;
     private List<NewsResponseDTO> newsList;
     private List<MessageResponseDTO> messages;
     private Set<RepairResponseDTO> repairs;
@@ -24,15 +25,15 @@ public class AccountResponseDTO {
     private List<TestAccountResponseDTO> testAccounts;
     private CarResponseDTO car;
 
-    public AccountResponseDTO(Long accountId, String fullName, String phoneNumber, String email, String login, String password, Boolean isAdmin, CityResponseDTO city, List<NewsResponseDTO> newsList, List<MessageResponseDTO> messages, Set<RepairResponseDTO> repairs, List<RepairAccountResponseDTO> repairAccounts, List<FeedbackResponseDTO> feedbacks, List<TestAccountResponseDTO> testAccounts, CarResponseDTO car) {
+    public AccountResponseDTO(Long accountId, String fullName, String phoneNumber, String email, String login, String password, CityResponseDTO city, Set<Role> roles, List<NewsResponseDTO> newsList, List<MessageResponseDTO> messages, Set<RepairResponseDTO> repairs, List<RepairAccountResponseDTO> repairAccounts, List<FeedbackResponseDTO> feedbacks, List<TestAccountResponseDTO> testAccounts, CarResponseDTO car) {
         this.accountId = accountId;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.login = login;
         this.password = password;
-        this.isAdmin = isAdmin;
         this.city = city;
+        this.roles = roles;
         this.newsList = newsList;
         this.messages = messages;
         this.repairs = repairs;
@@ -49,8 +50,8 @@ public class AccountResponseDTO {
         this.email = account.getEmail();
         this.login = account.getLogin();
         this.password = account.getPassword();
-        this.isAdmin = account.getAdmin();
         this.city = new CityResponseDTO(account.getCity());
+        this.roles = account.getRoles();
         this.newsList = account.getNewsList().stream()
                 .map(NewsResponseDTO::new)
                 .collect(Collectors.toList());
@@ -72,7 +73,7 @@ public class AccountResponseDTO {
         if (account.getCar() != null) {
             this.car = new CarResponseDTO(account.getCar());
         } else {
-            this.car = null; // Если поле car равно null, присвоить null в AccountResponseDTO
+            this.car = null;
         }
     }
     public Long getAccountId() {
@@ -123,13 +124,6 @@ public class AccountResponseDTO {
         this.password = password;
     }
 
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
 
     public CityResponseDTO getCity() {
         return city;
@@ -163,13 +157,6 @@ public class AccountResponseDTO {
         this.repairs = repairs;
     }
 
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
 
     public List<RepairAccountResponseDTO> getRepairAccounts() {
         return repairAccounts;
@@ -201,6 +188,14 @@ public class AccountResponseDTO {
 
     public void setCar(CarResponseDTO car) {
         this.car = car;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
 

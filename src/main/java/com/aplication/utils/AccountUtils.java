@@ -8,8 +8,5 @@ import java.util.Optional;
 
 public class AccountUtils {
 
-    public static Boolean AccountIsAdmin(Account account){
-        return account.getAdmin();
-    }
 
 }

@@ -1,6 +1,7 @@
 package com.aplication.controller.dto;
 
 import com.aplication.entity.City;
+import com.aplication.entity.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
@@ -25,8 +26,6 @@ public class AccountRequestDTO {
     @JsonProperty("password")
     private String password;
 
-    @JsonProperty("isAdmin")
-    private Boolean isAdmin;
 
     @JsonProperty("city")
     private City city;
@@ -51,6 +50,9 @@ public class AccountRequestDTO {
 
     @JsonProperty("car")
     private CarRequestDTO car;
+
+    @JsonProperty("roles")
+    private Set<Role> roles;
 
 
 
@@ -98,25 +100,11 @@ public class AccountRequestDTO {
         this.password = password;
     }
 
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
 
     public List<NewsRequestDTO> getNewsList() {
         return newsList;
     }
 
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
 
     public void setNewsList(List<NewsRequestDTO> newsList) {
         this.newsList = newsList;
@@ -176,5 +164,13 @@ public class AccountRequestDTO {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

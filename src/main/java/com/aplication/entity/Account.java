@@ -32,9 +32,11 @@ public class Account {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "isAdmin")
-    @ColumnDefault("false")
-    private Boolean isAdmin;
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
+
 
     @ManyToOne
     @JoinColumn(name = "city_id")
@@ -69,13 +71,12 @@ public class Account {
 
 
     public Account(String fullName, String phoneNumber, String email, String login,
-                   String password, Boolean isAdmin, City city) {
+                   String password, City city) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.login = login;
         this.password = password;
-        this.isAdmin = isAdmin;
         this.city = city;
         this.newsList = new ArrayList<>();
         this.messages = new ArrayList<>();
@@ -83,6 +84,7 @@ public class Account {
         this.repairAccounts = new ArrayList<>();
         this.feedbacks = new ArrayList<>();
         this.testAccounts = new ArrayList<>();
+        this.roles = new HashSet<>();
     }
 
     public Account() {
@@ -92,6 +94,7 @@ public class Account {
         this.repairAccounts = new ArrayList<>();
         this.feedbacks = new ArrayList<>();
         this.testAccounts = new ArrayList<>();
+        this.roles = new HashSet<>();
     }
 
     public void setCar(Car car) {
@@ -186,13 +189,6 @@ public class Account {
         this.password = password;
     }
 
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
-    }
 
     public City getCity() {
         return city;
@@ -275,6 +271,14 @@ public class Account {
         testAccount.setAccount(null);
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -284,7 +288,7 @@ public class Account {
                 ", email='" + email + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", isAdmin=" + isAdmin +
+                ", roles=" + roles +
                 ", city=" + city +
                 ", newsList=" + newsList +
                 ", messages=" + messages +
